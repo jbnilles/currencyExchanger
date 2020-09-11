@@ -19,9 +19,10 @@ function writeCurrencies(dropdownTo, dropdownFrom) {
 }
 function writeRates(ratesDiv, countryFrom, countryTo, amount, result) {
   let html ='';
+  html += '<h1>Conversion Rates</h1>'
   html += `<h3>${amount} ${countryFrom} = ${result.toFixed(2)} ${countryTo}</h3>`
   html += `<h6>1 ${countryFrom} = ${sessionStorage[countryTo] / sessionStorage[countryFrom]} ${countryTo}</h6>`
-  html += `<h6>1 ${countryTo} = ${sessionStorage[countryFrom] / sessionStorage[countryTo]} ${countryFrom}</h6>`
+  html += `<h6> ${sessionStorage[countryFrom] / sessionStorage[countryTo]} ${countryFrom} = 1 ${countryTo}</h6>`
   ratesDiv.html(html);
   
 }
@@ -52,7 +53,10 @@ $(document).ready(function() {
     $('#result').val(conversionAmount.toFixed(2));
   })
   $('#currencyFrom').change(function () {
-    let conversionAmount = CurrencyExchange.convert(parseFloat($('#amount').val()), $('#currencyFrom :selected').val(), $('#currencyTo :selected'));
+    let countryFrom = $('#currencyFrom :selected').val();
+    let countryTo = $('#currencyTo :selected').val();
+    let amount = parseFloat($('#amount').val());
+    let conversionAmount = CurrencyExchange.convert(amount,countryFrom, countryTo);
     $('#result').val(conversionAmount.toFixed(2));
   })
 });

@@ -6,12 +6,37 @@
 </head>
 <body>
   <div class="container">
+    <div class="jumbotron">
+      <h3 class="display-4">Currency Exchange</h3>
+    </div>
     <div id="userInput">
-      <input type="number" value='0' min='0' id="amount">
-      <select id="currencyFrom"></select>
-      <select id="currencyTo"></select>
-      <button id="convert-button">Convert</button>
-      <input type="text" value="0.00" disabled id="result">
+      <div class="row">
+        <div class="card ">
+          <div class="card-header">
+            <h3>convert From</h3>
+          </div>
+          <div class="card-body">
+            <input type="number" value='0' min='0' id="amount">
+            <select id="currencyFrom"></select>
+          </div>
+        </div>
+        <div id="convert-div">
+          <button id="convert-button" class="btn btn-dark">Convert</button>
+        </div>
+        <div class="card ">
+          <div class="card-header">
+            <h3>convert To</h3>
+          </div>
+          <div class="card-body">
+            <select id="currencyTo"></select>
+            <input type="text" value="0.00" disabled id="result">
+            
+          </div>
+        </div>
+      </div>
+      
+      
+      
     </div>
     <div id="rates">
       
