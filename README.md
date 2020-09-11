@@ -6,7 +6,7 @@
 
 ## Description
 
-_This program requires the user to enter a value and then select a currency in a dropdown menu to convert the said currency to a new currency selected in another drop down. Upon clicking the convert button the conversion rates will appear/change on the bottom of the screen. The rates will update when a new currency is selected or an amount changes in the input box._
+_This program requires the user to enter a value and then select a currency in a dropdown menu to convert the said currency to a new currency selected in another drop down. Upon clicking the convert button the conversion rates will appear/change on the bottom of the screen. The rates will update when a new currency is selected or an amount changes in the input box. When the page is loaded it makes an api call to get all of the currencies values compared to the USD and then once values are entered it will convert the specified value to USD and then to the desired currency. The values compared to USD are stored in session storage persisting across page refreshes. While using the program the values will update whenever a new currency is selceted, or when a new value is entered or when the convert button is clicked._
 
 ## Setup/Installation Requirements
 
