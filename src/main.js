@@ -55,9 +55,13 @@ function setUpStart(countryFrom, countryTo, currencyDescriptionsArray) {
   writeDescription(countryTo,  currencyDescriptionsArray, $("#currency-to-card"));
 }
 
-CurrencyExchange.writeRatesToSession();
+if(sessionStorage.length === 0)
+  CurrencyExchange.writeRatesToSession();
+
+  
 
 $(document).ready(function() {
+  
   let currencyDescriptionsArray = createCurrencyDescriptionsArray();
   writeCurrenciesDropDown($('#currencyTo'),$('#currencyFrom'));
   let children = $('#currencyFrom').children();  
