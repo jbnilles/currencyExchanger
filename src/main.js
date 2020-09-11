@@ -8,16 +8,22 @@ import CurrencyExchange from './currencyExhange.js';
 function writeCurrencies(dropdownTo, dropdownFrom) {
   let htmlTo = '';
   let htmlFrom = '';
-  console.log(sessionStorage);
   const conversionKeys = Object.keys(sessionStorage);
   conversionKeys.sort();
   conversionKeys.forEach(function (key){
     htmlTo += `<option value='${key}'>${key}</option>`
     htmlFrom += `<option value='${key}'>${key}</option>`
   });
-  
   dropdownTo.html(htmlTo);
   dropdownFrom.html(htmlFrom);
+}
+function writeRates(ratesDiv, countryFrom, countryTo, amount, result) {
+  let html ='';
+  html += `<h3>${amount} ${countryFrom} = ${result.toFixed(2)} ${countryTo}</h3>`
+  html += `<h6>1 ${countryFrom} = ${sessionStorage[countryTo] / sessionStorage[countryFrom]} ${countryTo}</h6>`
+  html += `<h6>1 ${countryTo} = ${sessionStorage[countryFrom] / sessionStorage[countryTo]} ${countryFrom}</h6>`
+  ratesDiv.html(html);
+  
 }
 
 $(document).ready(function() {
@@ -29,6 +35,7 @@ $(document).ready(function() {
     let amount = parseFloat($('#amount').val());
     let conversionAmount = CurrencyExchange.convert(amount,countryFrom, countryTo);
     $('#result').val(conversionAmount.toFixed(2));
+    writeRates($('#rates'),countryFrom,countryTo, amount, conversionAmount);
   });
   $('#amount').change(function () {
     let countryFrom = $('#currencyFrom :selected').val();
@@ -45,11 +52,7 @@ $(document).ready(function() {
     $('#result').val(conversionAmount.toFixed(2));
   })
   $('#currencyFrom').change(function () {
-    alert('here')
-    let countryFrom = $('#currencyFrom :selected').val();
-    let countryTo = $('#currencyTo :selected').val();
-    let amount = parseFloat($('#amount').val());
-    let conversionAmount = CurrencyExchange.convert(amount,countryFrom, countryTo);
+    let conversionAmount = CurrencyExchange.convert(parseFloat($('#amount').val()), $('#currencyFrom :selected').val(), $('#currencyTo :selected'));
     $('#result').val(conversionAmount.toFixed(2));
   })
 });

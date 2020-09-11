@@ -32,6 +32,8 @@ export default class CurrencyExchange {
   }
 
   static convert(amountFrom,countryFrom, countryTo) {
+    console.log(sessionStorage.getItem(countryFrom) / sessionStorage.getItem(countryTo))
+    console.log( sessionStorage.getItem(countryTo) / sessionStorage.getItem(countryFrom))
     return (amountFrom / sessionStorage.getItem(countryFrom)) * sessionStorage.getItem(countryTo);
   }
 
