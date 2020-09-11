@@ -6,7 +6,7 @@
 
 ## Description
 
-_TO ADD_
+_This program requires the user to enter a value and then select a currency in a dropdown menu to convert the said currency to a new currency selected in another drop down. Upon clicking the convert button the conversion rates will appear/change on the bottom of the screen. The rates will update when a new currency is selected or an amount changes in the input box._
 
 ## Setup/Installation Requirements
 
