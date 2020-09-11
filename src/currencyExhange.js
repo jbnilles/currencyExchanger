@@ -16,18 +16,19 @@ export default class CurrencyExchange {
 
     });
   }
+
   static writeRatesToSession() {
     let promise = CurrencyExchange.getRates('USD');
     promise.then(function (response) {
       const body = JSON.parse(response);
       if(body.result === 'success'){
-      const conversionKeys = Object.keys(body.conversion_rates);
-      conversionKeys.forEach(function (key){
-        sessionStorage.setItem(key, body.conversion_rates[key]);
-      })
-    } else {
-      alert('The currency code selected is not supported in this application');
-    }
+        const conversionKeys = Object.keys(body.conversion_rates);
+        conversionKeys.forEach(function (key){
+          sessionStorage.setItem(key, body.conversion_rates[key]);
+        });
+      } else {
+        alert('The currency code selected is not supported in this application');
+      }
     }, function(error) {
       console.log(error);
     });
@@ -36,5 +37,6 @@ export default class CurrencyExchange {
   static convert(amountFrom,countryFrom, countryTo) {
     return (amountFrom / sessionStorage.getItem(countryFrom)) * sessionStorage.getItem(countryTo);
   }
+  
 
 }
