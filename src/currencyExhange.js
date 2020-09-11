@@ -16,21 +16,23 @@ export default class CurrencyExchange {
 
     });
   }
-  writeRatesToSession() {
+  static writeRatesToSession() {
     let promise = CurrencyExchange.getRates('USD');
     promise.then(function (response) {
       const body = JSON.parse(response);
-      for(const key in response.conversion_rates) {
-        sessionStorage.setItem(key, response.conversion_rates[key]);
-      }
-      console.log(body);
+      //console.log(body);
+      const conversionKeys = Object.keys(body.conversion_rates);
+      conversionKeys.forEach(function (key){
+        sessionStorage.setItem(key, body.conversion_rates[key]);
+      })
+      //console.log(sessionStorage);
     }, function(error) {
     console.log(error);
     });
   }
 
-  convertFromUS(amountFrom,countryFrom, countryTo) {
-    return (amountFrom * sessionStorage.getItem(countryFrom)) * essionStorage.getItem(countryTo);
+  static convert(amountFrom,countryFrom, countryTo) {
+    return (amountFrom / sessionStorage.getItem(countryFrom)) * sessionStorage.getItem(countryTo);
   }
 
 }
