@@ -59,4 +59,11 @@ $(document).ready(function() {
     let conversionAmount = CurrencyExchange.convert(amount,countryFrom, countryTo);
     $('#result').val(conversionAmount.toFixed(2));
   })
+  $('#result').change(function () {
+    let countryFrom = $('#currencyFrom :selected').val();
+    let countryTo = $('#currencyTo :selected').val();
+    let amount = parseFloat($('#result').val());
+    let conversionAmount = CurrencyExchange.convert(amount, countryTo, countryFrom);
+    $('#amount').val(conversionAmount.toFixed(2));
+  })
 });
