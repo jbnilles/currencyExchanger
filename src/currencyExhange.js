@@ -13,10 +13,8 @@ export default class CurrencyExchange {
       };
       request.open('GET', url, true);
       request.send();
-
     });
   }
-
   static writeRatesToSession() {
     let promise = CurrencyExchange.getRates('USD');
     promise.then(function (response) {
@@ -33,10 +31,7 @@ export default class CurrencyExchange {
       console.log(error);
     });
   }
-
   static convert(amountFrom,countryFrom, countryTo) {
     return (amountFrom / sessionStorage.getItem(countryFrom)) * sessionStorage.getItem(countryTo);
   }
-  
-
 }
